@@ -1,0 +1,392 @@
+## 1. 콘솔창에 메세지 띄워보기
+
+ ```
+Debug.Log("Hello Unity!");
+//
+ ```
+
+## 2. 변수
+
+```
+// int 변수명; -> 정수형
+int a = 5;
+// float 변수명; -> 실수형
+float b = 4.15f;
+// string 변수명; -> 문자열
+string c = "노순건";
+//bool 변수명; -> 참, 거짓(논리형)
+bool d = false;
+```
+
+## 3. 그룹형 변수
+
+``` 
+// 문자열 배열
+string[] monsters = {"슬라임", "오우거", "달팽이"};
+// 호출
+string[0];
+string[1];
+string[2];
+
+// 정수형 배열
+int[] level = {1,2,3,4}
+//호출
+string[0];
+string[1];
+string[2];
+string[3];
+
+// List
+List<sting> items = new List<string>();
+// List 요소 추가
+itmes.Add("생명물약30");
+items.Add("마나물약30");
+
+// List 요소 삭제
+items.RemoveAt("요소인덱스");
+```
+
+## 3. 연산자
+
+```
+int exp = 1500;
+// 사칙연산
+exp = 1500 + 320;
+exp = exp - 10;
+level = exp / 300;
+strength = level * 3.1f;
+// % -> 나머지
+// 문자열 더하기도 가능
+string title = "전설의"
+stirng name = "이름은?"
+
+// 비교 연산자 -> 논리형으로 리턴
+// == -> 같음, != -> 같지않음
+// > , < , <= , >=
+
+// && -> and
+// || -> or
+```
+
+```
+// 삼항 연산자
+string condition = isBadCondition ? "나쁨" : "좋음";
+//                   논리형 리턴       사실일 때 / 거짓일 때
+```
+
+## 4. 키워드
+
+```
+//int float sting bool new List
+```
+
+## 5. 조건문
+
+```
+// if문 -> 비교가 논리형인 경우
+// if (비교) {트루인 경우 실행} -> c와 동일
+// else if(다른 조건) {다른 조건인 경우 실행}
+// else {위의 조건을 벗어난 나머지 경우 실행}
+
+// switch, case문 -> 비교가 변수값인 경우
+switch (변수){
+	case 값1:
+		실행할 내용
+		break; //값이 실행되고 switch문을 나가기 위해 꼭 필요.
+	case 값1:
+		실행할 내용
+		break;
+	case 값1:
+		실행할 내용
+		break;
+	default:
+		모든 케이스가 아닌 경우 실행
+		break;
+}
+```
+
+## 6. 반복문
+
+```
+// while문
+while (조건)
+{
+	실행될 내용;
+}
+// for문
+for (int i = 0; i <5, i++)
+{
+	조건이 끝날때까지 반복;
+}
+
+// foreach문
+for (sting monster in monsters)
+{
+	배열 순회할때까지 반복;
+}
+```
+
+## 7. 함수
+
+```
+int Heal(int health)
+{
+	health +=10;
+	Debug.Log("힐을 받았습니다")
+	return health;
+}
+//반환 키워드
+// void -> 반환값이 없음
+// int, string, float, bool
+
+//지역변수와 전역벼수
+//함수 내에서 선언된 변수는 다른 함수내에서 사용 할 수 없음.
+
+```
+
+## 8. 클래스
+
+```
+class -> 선언
+// 유니티에서는 하나의 파일 하나의 클래스로 쓴다,
+변수와 함수들을 선언하고 다른 클래스에서 꺼내 쓸 수있다,
+
+// 외부 클래스에 접근하기 위해서는 접근자를 설정해줘야함.
+// private -> public
+클래스명 변수명 = new 클래스명(); -> 인스턴스화
+
+```
+
+
+
+## 9. 상속
+
+```
+클래스가 클래스를 상속받아서 사용할 수 있음/
+자식 클래스는 부모클래스의 요소들을 사용하면서도 자신의 요소들을 사용한다.
+```
+
+
+
+## 10. Unity Life Cycle
+
+```
+// 1. 초기화 영역
+void Awake() //게임 실행시 최초로 실행
+{
+	Debug.Log("플레이어 데이터가 준비되었습니다");
+}
+
+void Start() // 업데이트 시작 직전 실행
+{
+	Debug.Log("사냥 장비를 챙겼습니다");
+}
+// 1.5 활성화
+void OnEnable()
+{
+	Debug.Log("플레이어가 로그인되었습니다!");
+}
+// 2. 물리 연산 영역
+void FixedUpdate() // 물리 연산 업데이트
+{
+	//고정된 실행 주기로 cpu 많이 사용 -> 고정적 호출
+	//프레임대로 호출(1초에 50회정도)
+	Debug.Log("이동~");
+}
+// 3. 게임로직
+void Update() //게임 로직 업데이트
+{
+	// 환경에 따라 실행주기가 달라질 수 있음.
+	// 60프레임
+	Debug.Log("몬스터 사냥!!");
+}
+void LateUpdate() // 모든 업데이트 끝난 후
+{
+	Debug.Log("경험치 획득");
+}
+//3.5 비활성화
+void OnDisable()
+{
+	Debug.Log("플레이어가 로그아웃하였습니다");
+}
+// 4. 해체
+void OnDestory() //게임 오브젝트가 삭제될 때
+{
+	Debug.Log("플레이어 데이터를 해체하였습니다.")
+}
+
+순서
+Awake -> OnEnable -> start -> FixedUpdate -> Update -> LateUpdate -> OnDisable -> OnDestory
+```
+
+## 유니티 값 입력받기.
+
+```
+// anyKey (up, down, stay) -> 아무 값이나 들어왔을때 트루를 반환
+if (Input.anyKeyDown) // 눌렀습니다. down
+    {
+        Debug.Log("플레이어가 아무 키를 눌렀습니다.");
+    }
+if (Input.anyKey) // 누르고 있습니다 stay
+    {
+        Debug.Log("플레이어가 아무 키를 누르고 있습니다.");
+    }
+    
+if (Input.anyKeyup) // 뗏을 때 up
+    {
+        Debug.Log("플레이어가 아무 키에서 손을 뗏습니다..");
+    }
+```
+
+```
+//getKey (up, down, stay) -> 입력이 들어왔을 때 트루값을 반환
+// Return -> Enter키, Arrow->방향키
+if (Input.getKey(KeyCode.Return))
+    {
+    	Debug.Log("플레이어가 아이템을 구입하였습니다");
+    }
+if (Input.getKeyDown(KeyCode.LeftArrow))
+    {
+    	Debug.Log("플레이어가 왼쪽으로 이동합니다");
+    }
+if (Input.getKeyup(KeyCode.rightArrow))
+    {
+    	Debug.Log("플레이어가 오른쪽 이동을 멈추었습니다.");
+    }
+```
+
+```
+//GetMouseButton 0 왼쪽 1 오른쪽
+if (Input.GetMouseButton(0))
+    {
+    	Debug.Log("미사일 모으는중");
+    }
+if (Input.GetMouseButtonDown(0))
+    {
+    	Debug.Log("미사일 준비!");
+    }
+if (Input.GetMouseButtonUp(1))
+    {
+    	Debug.Log("미사일 발사!");
+    }
+```
+
+## GetAxis
+
+```
+// GetAxis, float값을 반환
+Input.GetAixs() -> 가중치 o
+Input.GetAxisRaw() -> 가중치 x
+```
+
+```
+// Transform -> 오브젝트 형체에 대한 기본 컴포넌트
+// Unity에서는 transform을 기본 변수로 지정해두었음
+Vector3 vec = new Vector3(0,0,0);
+transform.Translate(vec);
+//Vector란? 
+// 스칼라 : 순수한 값
+// 스칼라에 방향이 더해지면 벡터, 즉 방향과 크기에 대한 값을 가진 것
+```
+
+## region
+
+```
+c#에서는 #region을 통해 그룹을 만들 수 있다
+#endregion으로 닫아주자.
+```
+
+## Vector3 클래스 제공 함수
+
+```
+//1. MoveTowards, 단순 등속 이동
+Vector3.MoveTowards(현재위치, 목표위치, 속도);
+ex) transform.position = Vector3.MoveTowards();
+//2. SmoothDamp //부드로운 감속이동, 도착할때 부드럽게 감속해서 도착
+Vector3.SmoothDamp(현재위치, 목표위치, 참조속도, 속도) //마지막 매개변수에 반비례로 이동
+ex) transform.position = Vector3.SmoothDamp(현재위치, 목표위치, Vector3.zero, 속도)
+//3. Lerp // 선형보간, SmoothDamp보다 감속시간이 김
+transformposition = Vector3.Lerp(현재위치, 목표위치, 0~1(속도));
+//4. SLerp (구면 선형 보간 이동) , 포물선이동
+transform.position = Vector3.Slerp(현재위치, 목표위치, 속도);
+```
+
+## deltaTime
+
+```
+Time.deltaTime -> 이전 프레임의 완료까지 걸린 시간
+// 사용이유 : 프레임 수의 차이가 게임의 스펙에 영향을 안주게 하기 위해
+벡터에 곱하기
+transform.Translate(Vec * Time.deltaTime);
+시간 매게변수에 곱하기
+Vector3.Lerp(Vec1, Vec2, T*Time.deltaTime);
+```
+
+## 중력적용하기
+
+```
+// Unity는 컴포넌트 개발도구
+// colider -> 충돌 테두리(물리효과를 받기위한 컴포넌트) -> 없애면 충돌이 일어나지 않는다.
+// rigidbody 컴포넌트 추가 -> 중력의 영향을 받음
+mess = 무게
+use Gravity = 중력사용 여부
+is kinematic = 외부 물리 효과 여부
+```
+
+## Default-Material
+
+```
+재질 만들기
+create -> material
+```
+
+## 물리 재질
+
+```
+create physics Material : 탄성과 마찰을 다루는 물리적인 재질
+
+bounciness : 탄성력, 높을수록 많이 튀어오름
+bounciness Combine : 한번 튀고 다음 탄성 결정 , 맥시멈으로 많이 설정
+
+Friction : 마찰력 
+- static : 멈춰있을때 마찰력
+- dynamic : 움직일 때 마찰력
+```
+
+```
+물체 필수 요소 : mesh, material, collider, rigidbody
+```
+
+## 물체 움직이기
+
+```
+GetComponent<Rigidbody>(); -> 움직일 물체의 컴포넌트 잡기
+rigid.velocity
+rigid.AddForce(Vector3.up * 5, ForceMode(힘을주는 방식));
+//ForceMode의 종류 -> Impulse
+//방향키로 움직이기
+Vector3 vec = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input. GetAxisRaw("Vertical"));
+rigid.AddForce(vec, ForceMode.Impulse);
+//물체에 회전력 주기
+rigid.AddTorque
+```
+
+## 오브젝트 접근
+
+```
+Rigidbody; -> 물리
+MeshRendere -> 재질
+```
+
+
+
+## UGUI 기초
+
+### 1. 캔버스
+
+- UI가 그려지는 도화지 역할인 컴포넌트
+- Unity는 World(카메라)와 Screen(화면)이 있음.
+
+### 2. Text
+
+- 
